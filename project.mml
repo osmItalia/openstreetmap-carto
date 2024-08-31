@@ -2085,7 +2085,7 @@ Layer:
               OR leisure IN ('slipway', 'track')
               OR waterway IN ('dam', 'weir')
               OR "natural" IN ('arete', 'cliff', 'ridge'))
-            AND COALESCE((tags->('name:it')), (tags->('name:en')), name, NULL) IS NOT NULL
+            AND COALESCE((tags->('name:it')), (tags->('name:en')), name, NULL) IS NOT NULL)
             OR (tags @> 'golf=>hole' AND ref IS NOT NULL)
         ) AS text_line
     properties:
