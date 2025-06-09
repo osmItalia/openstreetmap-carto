@@ -5,10 +5,10 @@
 point:
   # The point table is small, but so are the partial indexes
   place:
-    where: place IS NOT NULL AND name IS NOT NULL
+    where: place IS NOT NULL AND name_it IS NOT NULL
 line:
   label:
-    where: name IS NOT NULL OR ref IS NOT NULL
+    where: name_it IS NOT NULL OR ref IS NOT NULL
   ferry:
     where: route = 'ferry' AND osm_id > 0
   river:
@@ -17,15 +17,15 @@ line:
     where: waterway IN ('river', 'canal', 'stream', 'drain', 'ditch')
 polygon:
   # The polygon table is by far the largest, and generally the slowest
-  name:
+  name_it:
     function: ST_PointOnSurface(way)
-    where: name IS NOT NULL
+    where: name_it IS NOT NULL
   name_z6:
     function: ST_PointOnSurface(way)
-    where: name IS NOT NULL AND way_area > 5980000
+    where: name_it IS NOT NULL AND way_area > 5980000
   admin:
     function: ST_PointOnSurface(way)
-    where: name IS NOT NULL AND boundary = 'administrative' AND admin_level IN ('0', '1', '2', '3', '4')
+    where: name_it IS NOT NULL AND boundary = 'administrative' AND admin_level IN ('0', '1', '2', '3', '4')
   nobuilding:
     where: building IS NULL
   military:
